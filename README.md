@@ -28,8 +28,7 @@ No installer required.
 
 TechStream streams local media folders or M3U playlists over LAN using a built-in HTTP server.
 
-Version **4.x** expands TechStream with a **metadata-enabled playlist system**, **poster and thumbnail support**, and an **upgraded default web interface** for browsing and streaming media libraries.
-
+Version **4.2.0** expands TechStream with a fully upgraded metadata system, including TMDB integration, description support, and improved keyword-based organization, alongside an enhanced web interface for browsing and streaming media libraries.
 ---
 
 ## Features
@@ -42,14 +41,30 @@ Version **4.x** expands TechStream with a **metadata-enabled playlist system**, 
 - Persistent M3U playlist library
 - Playlist Manager for loading and organizing playlists
 - Host multiple playlists simultaneously
-- Resume-safe playlist switching
-- Playlist & file metadata support (Categories, Keywords, Posters)
-- Metadata-enabled M3U parsing (#TS-CATEGORY, #TS-KEYWORDS, #TS-POSTER)
+- Resume-safe playback when switching playlists
+- Playlist & file metadata support (Descriptions, Keywords, Posters, Groups)
+- TMDB metadata integration (optional, user-provided API key required)
+- Metadata-enabled M3U parsing (#TS-DESCRIPTION, #TS-PLAYLIST-DESCRIPTION, #TS-KEYWORDS, #TS-POSTER, group-title, #TS-GROUP-ORDER)
 - Poster / thumbnail delivery endpoint (/thumb/{id})
 - Embedded browser video playback in the default web interface
 - Upgraded built-in web interface
 - Optional custom web interface
 - Portable (no installer required)
+
+---
+
+## TMDB Metadata (Optional)
+
+TechStream supports optional integration with TMDB (The Movie Database)  
+to automatically populate metadata such as titles, descriptions, posters, and keywords.
+
+This feature requires a user-provided API key.
+
+You can obtain a free API key from:
+
+https://www.themoviedb.org/
+
+Metadata can still be fully managed manually without TMDB.
 
 ---
 
@@ -119,7 +134,7 @@ Returns a list of available playlists
 ```
 
 ```
-/playlist/{name}.m3u
+/playlist/{id}.m3u
 Returns a specific playlist
 ```
 
