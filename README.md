@@ -1,166 +1,307 @@
-# TechStream
+# TechStreamTV
 
-Lightweight LAN Media Streaming for Windows
+**Personal Media Streaming for Windows**
 
-TechStream is a **portable, self-hosted media server** designed for simple, fast streaming of local media libraries over your network.
+TechStreamTV is a **portable, self-hosted personal media server** for organizing, browsing, and streaming your own media library across devices on your local network.
 
-Stream your media to any device on your LAN using a built-in HTTP server.
-No cloud. No forced accounts. No tracking. Just your media, your network.
+Run TechStreamTV Server on a Windows PC, build or import your media library, and connect from browsers or compatible TechStreamTV clients across your LAN.
+
+**No cloud media hosting. No external database server. Your library stays on your hardware.**
 
 ---
 
 ## Download
 
-Download the latest release:
+Download the latest TechStreamTV release:
 
-[https://github.com/ablestudio-dev/techstream/releases](https://github.com/ablestudio-dev/techstream/releases)
+[https://github.com/ablestudio-dev/TechStreamTV/releases](https://github.com/ablestudio-dev/TechStreamTV/releases)
 
 Extract the ZIP file and run:
 
-TechStream.exe
+`TechStream.exe`
 
-No installer required.
+No installer or external database setup is required.
 
 ---
 
 ## Overview
 
-TechStream turns any folder or playlist into a simple streaming source accessible from browsers, VLC, or other compatible clients.
+TechStreamTV combines a persistent SQLite-powered media library with HTTP streaming, synchronized playback history, a responsive Web UI, and support for compatible native clients.
 
-* Runs locally on your machine
-* Streams over HTTP
-* Works across devices on your network
-* Designed for speed and simplicity
+The TechStreamTV Server is authoritative for your library and playback state, allowing supported devices to share information such as:
+
+- Resume position
+- Watched and completed status
+- Play count
+- Last played
+- Playback history
+
+Pause on one supported device and continue on another.
 
 ---
 
 ## Core Features
 
-* Stream local video files over LAN
-* Built-in HTTP server (Kestrel)
-* Byte-range streaming (seeking supported)
-* Multiple playlists hosted simultaneously
-* M3U playlist support (local + IPTV)
-* Web-based playback interface
-* Subtitle support (.srt)
-* Optional authentication system (multi-user support)
-* Portable — no installation required
+- Persistent SQLite-powered media library
+- Movies, TV series, collections, and playlists
+- Stream local video files over LAN
+- IPTV and M3U / M3U8 support
+- Continue Watching
+- Recently Added
+- Most Watched
+- Recently Watched
+- Dynamic category discovery
+- Synchronized playback progress
+- Resume positions and watched status
+- Play counts and playback history
+- Metadata, posters, descriptions, and keywords
+- TMDB metadata integration
+- Responsive built-in Web UI
+- Desktop, mobile, touch, and television layouts
+- Remote and D-pad navigation
+- Automatic LAN server discovery
+- Compatible native TechStreamTV clients
+- Byte-range streaming and seeking
+- SRT subtitle support
+- Optional multi-user authentication
+- Automatic database backups and recovery
+- Portable, self-contained Windows deployment
 
 ---
 
-## How It Works
+## Media Library
 
-1. Select a media folder or load an M3U playlist
-2. Start the server
-3. Connect from another device using your LAN IP
+TechStreamTV uses an embedded SQLite database as the authoritative source for the active media library.
 
-Example:
+The library can store:
 
-[http://YOUR-LAN-IP:5050/](http://YOUR-LAN-IP:5050/)
+- Playlists and media
+- Metadata and posters
+- Groups and seasons
+- Users and settings
+- Playback history
 
-For VLC:
+SQLite is embedded directly into TechStreamTV and requires no separate database installation or configuration.
 
-[http://YOUR-LAN-IP:5050/playlist/{id}.m3u](http://YOUR-LAN-IP:5050/playlist/{id}.m3u)
-
----
-
-## Web Interface
-
-TechStream includes a built-in web interface for:
-
-* Browsing playlists
-* Playing media directly in the browser
-* Viewing server information
-
-Accessible at:
-
-[http://YOUR-LAN-IP:5050/](http://YOUR-LAN-IP:5050/)
+M3U and M3U8 remain supported for importing, exporting, IPTV, and compatibility with external applications.
 
 ---
 
-## Playlists
+## Library Discovery
 
-TechStream supports multiple playlist modes:
+TechStreamTV automatically generates useful discovery sections from your library and playback history.
 
-### Folder Mode
+The normal library includes:
 
-* Automatically indexes media files
-* Applies natural sorting
+1. Continue Watching
+2. Recently Added
+3. Most Watched
+4. Recently Watched
+5. Categories
+6. Unsorted
 
-### M3U Mode
+Categories are generated from playlist keyword metadata.
 
-* Uses playlist order exactly as defined
-* Supports IPTV and external streams
+Playback history can influence discovery for the current user, helping surface unwatched and less-watched content while retaining access to the complete library.
 
-Multiple playlists can be hosted and accessed independently.
+---
+
+## Playback Sync
+
+Playback state is maintained by TechStreamTV Server instead of being tied exclusively to one browser or playback device.
+
+Compatible TechStreamTV clients can share:
+
+- Resume positions
+- Watched status
+- Completion
+- Play counts
+- Last-played information
+- Playback history
+
+For example, you can begin watching something using one supported device and resume from the same position using another.
+
+---
+
+## Web UI
+
+TechStreamTV includes a responsive Web UI for library discovery, browsing, and playback.
+
+Features include:
+
+- Horizontal discovery rows
+- Continue Watching
+- Recently Added
+- Most Watched
+- Recently Watched
+- Dynamic categories
+- Library Menu
+- Library search
+- Category filtering
+- Playlist detail screens
+- Posters and descriptions
+- Season and collection grouping
+- Resume indicators
+- Watched badges
+- Embedded browser playback
+- IPTV / HLS playback
+- Desktop and mobile layouts
+- Television layouts
+- Remote and D-pad navigation
+
+Library administration remains in the TechStreamTV Server application.
+
+---
+
+## Native Clients
+
+TechStreamTV Server provides the library, streaming, discovery, compatibility, and playback-state services used by compatible TechStreamTV clients.
+
+Supported playback clients include:
+
+- Web browsers
+- TechStream Player for Windows
+- TechStream Player for Android / Fire OS
+
+Compatible native clients can automatically discover TechStreamTV servers running on the same local network.
+
+Native clients are versioned and released independently from the Server.
+
+---
+
+## IPTV & M3U
+
+TechStreamTV retains M3U and M3U8 compatibility.
+
+Supported workflows include:
+
+- Import M3U and M3U8 playlists
+- Export library playlists to M3U
+- IPTV playlists
+- HTTP and HTTPS media
+- Compatible HLS streams
+- External playlist access for applications such as VLC
+
+Local media uses direct HTTP streaming with byte-range support.
 
 ---
 
 ## Subtitles
 
-* Automatically detects matching `.srt` files
-* Loads subtitles during playback in the Web UI
-* Native browser subtitle controls (CC button)
+TechStreamTV supports `.srt` subtitle files.
+
+- Automatically detects matching subtitle files
+- Preserves subtitle information in the media library
+- Browser subtitle controls when available
+- Server-provided subtitle information for compatible native clients
 
 ---
 
-## Authentication (Optional)
+## Authentication
 
-TechStream includes an optional authentication system.
+Optional authentication is available for shared local networks.
 
-When enabled:
+Features include:
 
-* Web UI requires login
-* API and streaming endpoints are protected
-* External clients must authenticate
+- Multiple local users
+- Secure password storage
+- Browser session authentication
+- Client authentication support
+- Per-user playback history
+- Per-user resume and watched state
+- Per-user library discovery
+- Login rate limiting
 
-Authentication is **disabled by default**.
-
----
-
-## Philosophy
-
-TechStream is built around a few core ideas:
-
-* **LAN-first** — your media stays local
-* **Portable** — no installation or system changes
-* **Self-hosted** — no reliance on external services
-* **Simple by default** — advanced features remain optional
+Authentication remains optional for normal private-LAN operation.
 
 ---
 
-## Roadmap Direction
+## Database Reliability
 
-TechStream is evolving into a **full media platform** built around:
+TechStreamTV maintains its SQLite database automatically.
 
-* Multi-user support
-* Playback tracking and resume
-* Improved Web UI experience
-* Multi-library and remote library support
-* Cross-device compatibility
+Reliability features include:
+
+- Automatic schema migration
+- Write-Ahead Logging (WAL)
+- Database integrity checks
+- Pre-migration backups
+- Rotating daily backups
+- Automatic recovery from a valid backup
+- Preservation of damaged databases for troubleshooting
+
+If automatic database recovery is required, TechStreamTV informs the user.
+
+---
+
+## Quick Start
+
+1. Download and extract the TechStreamTV ZIP file.
+2. Run `TechStream.exe`.
+3. Build or import your media library.
+4. Start the server.
+5. Open the Web UI from another device:
+
+[http://YOUR-LAN-IP:5050/](http://YOUR-LAN-IP:5050/)
+
+Compatible TechStreamTV clients can also automatically discover servers running on the same local network.
+
+For VLC or another M3U-compatible application:
+
+[http://YOUR-LAN-IP:5050/playlist/{id}.m3u](http://YOUR-LAN-IP:5050/playlist/{id}.m3u)
 
 ---
 
 ## Requirements
 
-* Windows 10 or Windows 11 (64-bit)
-* Devices must be on the same LAN network
+- Windows 10 or Windows 11 (64-bit)
+- Devices connected to the same local network
+
+TechStreamTV Server is self-contained and uses .NET 10 LTS.
+
+No external database server is required.
 
 ---
 
-## Notes
+## LAN & Privacy
 
-* Always use your **LAN IP address**
-* Do **not** use `127.0.0.1` from another device
-* The server binds to `0.0.0.0` for LAN access
-* Windows Firewall may prompt on first run
+TechStreamTV is designed around local ownership and control.
+
+- **LAN-first** — stream directly across your local network
+- **Self-hosted** — your server runs on your hardware
+- **Private** — no required cloud media hosting
+- **Portable** — no installer required
+- **Independent** — no external database server required
+- **Cross-device** — browsers and compatible clients connect directly to your server
+
+Always use your LAN IP address when connecting from another device.
+
+Do **not** use `127.0.0.1` from another device.
+
+Windows Firewall may request permission for network access when TechStreamTV Server is first used.
+
+---
+
+## Project Direction
+
+TechStreamTV continues to evolve as a personal media platform built around:
+
+- Persistent media libraries
+- Fast library discovery
+- Cross-client playback synchronization
+- Reliable native playback
+- Television and remote navigation
+- Server/client compatibility
+- Independent but interoperable Web and native clients
+
+The Server remains authoritative while the Web UI and native clients provide interfaces tailored to their respective platforms.
 
 ---
 
 ## License
 
-See **LICENSE.txt** for details.
+See **LICENSE.txt** for license details.
 
 ---
 
-Built for speed, simplicity, and full local control.
+**Your library. Your hardware. Your network. Your experience.**
